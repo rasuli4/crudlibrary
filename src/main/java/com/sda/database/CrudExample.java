@@ -5,10 +5,11 @@ import com.sda.database.connection.MySqlDatabaseConnection;
 import com.sda.database.entity.EmployeeEntity;
 import com.sda.database.property.ConnectionProperty;
 import com.sda.database.repository.EmployeeRepository;
+import lombok.extern.java.Log;
 
 import java.util.List;
 
-
+@Log
 public class CrudExample {
     public static void main(String[] args) {
 
@@ -23,6 +24,8 @@ public class CrudExample {
 
 
         EmployeeRepository employeeRepository = new EmployeeRepository(mySqlDatabaseConnection);
+
+        log.info("usage of findAll");
         List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
 
         for (EmployeeEntity employeeEntity : employeeEntities) {
@@ -30,5 +33,11 @@ public class CrudExample {
                     , employeeEntity.getId(), employeeEntity.getName(), employeeEntity.getCity()
                     , employeeEntity.getPhone(), employeeEntity.getAge()));
         }
+
+        log.info("usage of findById");
+
+        EmployeeEntity employeeEntity = employeeRepository.findById(123);
+        System.out.println(employeeEntity.getName() != null ? employeeEntity.toString() : "no employee found with such ID");
+
     }
 }

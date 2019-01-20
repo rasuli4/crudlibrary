@@ -41,10 +41,27 @@ public class EmployeeRepository implements CrudRepository<EmployeeEntity> {
         return employeeEntities;
     }
 
-    public Optional<EmployeeEntity> findById(long id) {
+    public EmployeeEntity findById(long id) {
 
-        ResultSet resultSet = databaseConnection.read("select * from employee e where e.id=" + id);
+        EmployeeEntity employee = new EmployeeEntity();
 
-        return null;
+
+        try {
+            ResultSet resultSet = databaseConnection.read("select * from employee e where e.id=" + id);
+
+            while (resultSet.next()) {
+                employee.setId(resultSet.getInt("id"));
+                employee.setName(resultSet.getString("name"));
+                employee.setAge(resultSet.getInt("age"));
+                employee.setCity(resultSet.getString("city"));
+                employee.setPhone(resultSet.getString("phone_no"));
+            }
+        } catch (
+                SQLException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return employee;
     }
 }

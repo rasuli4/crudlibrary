@@ -1,7 +1,5 @@
 package com.sda.database.repository;
 
-import com.google.common.base.Optional;
-import com.sda.database.entity.EmployeeEntity;
 
 import java.util.List;
 
@@ -28,6 +26,14 @@ public interface CrudRepository<T> {
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
 
-    EmployeeEntity findById(long id);
+    T findById(long id);
+
+    long count();
+
+    int delete(long id);
+
+    int update(T updateEntity);
+
+    int create(T newEntity);
 
 }

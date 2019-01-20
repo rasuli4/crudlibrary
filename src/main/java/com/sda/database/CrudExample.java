@@ -25,19 +25,26 @@ public class CrudExample {
 
         EmployeeRepository employeeRepository = new EmployeeRepository(mySqlDatabaseConnection);
 
-        log.info("usage of findAll");
-        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
+//        log.info("usage of findAll");
+//        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
+//
+//        for (EmployeeEntity employeeEntity : employeeEntities) {
+//            System.out.println(String.format("Id: %d, Name: %s, City: %s, Phone: %s, Age: %d"
+//                    , employeeEntity.getId(), employeeEntity.getName(), employeeEntity.getCity()
+//                    , employeeEntity.getPhone(), employeeEntity.getAge()));
+//        }
+//
+//        log.info("usage of findById");
+//
+//        EmployeeEntity employeeEntity = employeeRepository.findById(123);
+//        System.out.println(employeeEntity.getName() != null ? employeeEntity.toString() : "no employee found with such ID");
+//
+//        log.info("deleting specified employee from table");
+//        employeeRepository.delete(156L);
 
-        for (EmployeeEntity employeeEntity : employeeEntities) {
-            System.out.println(String.format("Id: %d, Name: %s, City: %s, Phone: %s, Age: %d"
-                    , employeeEntity.getId(), employeeEntity.getName(), employeeEntity.getCity()
-                    , employeeEntity.getPhone(), employeeEntity.getAge()));
-        }
+        log.info("updating specified employee from table");
+        employeeRepository.update(EmployeeEntity.builder().id(184).name("Rasul Turabov").city("Tallinn").age(100).build());
 
-        log.info("usage of findById");
-
-        EmployeeEntity employeeEntity = employeeRepository.findById(123);
-        System.out.println(employeeEntity.getName() != null ? employeeEntity.toString() : "no employee found with such ID");
 
     }
 }
